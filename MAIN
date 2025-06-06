@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matrix Prediction Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f0f0f;
+      color: #00ff00;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    input[type="number"] {
+      padding: 10px;
+      font-size: 16px;
+      margin-right: 10px;
+      width: 100px;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #00ff00;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .output {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Matrix Prediction Generator</h1>
+  <div>
+    <input type="number" id="ping" placeholder="Enter Ping (ms)" min="10" max="200">
+    <button onclick="generateCoordinates()">Generate</button>
+  </div>
+  <div class="output" id="output"></div>
+
+  <script>
+    function generateCoordinates() {
+      const ping = parseInt(document.getElementById('ping').value);
+      if (isNaN(ping) || ping < 10 || ping > 200) {
+        document.getElementById('output').textContent = 'Please enter a valid ping between 10-200ms.';
+        return;
+      }
+
+      // Example formula for generating coordinates based on ping
+      const x = (300 - ping) + Math.floor(Math.random() * 10);
+      const y = ping + Math.floor(Math.random() * 10);
+
+      document.getElementById('output').textContent = `Predicted X: ${x}, Y: ${y}`;
+    }
+  </script>
+</body>
+</html>
